@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         jugar.setOnClickListener(view -> abrirIntentJuego());
         instrucciones = (Button) findViewById(R.id.instrucciones);
         instrucciones.setOnClickListener(view -> abrirIntentInstrucciones());
-        abrirIntentJuego();
     }
 
     private void abrirIntentInstrucciones() {

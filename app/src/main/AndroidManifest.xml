@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdivinaElAnimal">
-        <activity android:name="com.gurzelai.adivinaelanimal.Instrucciones"></activity>
-        <activity android:name="com.gurzelai.adivinaelanimal.Juego" />
-        <activity android:name="com.gurzelai.adivinaelanimal.MainActivity">
+        <activity android:name=".Acierto"></activity>
+        <activity android:name=".Instrucciones" />
+        <activity android:name=".Juego" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
