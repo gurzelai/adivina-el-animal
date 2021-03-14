@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.icu.util.BuddhistCalendar;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +36,10 @@ public class Juego extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Adivina el animal");
 
-        uno = (ImageButton) findViewById(R.id.imagen1);
-        dos = (ImageButton) findViewById(R.id.imagen2);
-        tres = (ImageButton) findViewById(R.id.imagen3);
-        cuatro = (ImageButton) findViewById(R.id.imagen4);
+        uno = findViewById(R.id.imagen1);
+        dos =  findViewById(R.id.imagen2);
+        tres = findViewById(R.id.imagen3);
+        cuatro = findViewById(R.id.imagen4);
         boton = findViewById(R.id.boton);
         boton.setOnClickListener(view -> volverAReproducir());
         inicializar();
@@ -60,6 +62,10 @@ public class Juego extends AppCompatActivity {
     private void comprobar(String s) {
         if (s.equals(correcto)) {
             mp.stop();
+            FirebaseAnalytics analytics = FirebaseAnalytics.getInstance(this);
+            Bundle bundle = new Bundle();
+            bundle.putString("a", "b");
+            analytics.logEvent("c", bundle);
             Intent intent = new Intent(getApplicationContext(), Acierto.class);
             startActivityForResult(intent, 1);
         }
