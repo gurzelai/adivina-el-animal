@@ -2,4 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.AdivinaElAnimal" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
     </style>
+    <style name="Theme.AdivinaElAnimal.Launcher">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
 </resources>
