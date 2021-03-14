@@ -72,10 +72,10 @@ public class Juego extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onStop() {
         mp.stop();
         mp.release();
-        super.onDestroy();
+        super.onStop();
     }
 
     private void inicializar() {
