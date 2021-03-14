@@ -21,7 +21,7 @@ import java.util.Random;
 
 public class Juego extends AppCompatActivity {
 
-    String[] animales = {"burro", "cabra", "canario", "gabiota", "lobo", "tigre"};
+    String[] animales = {"burro", "caballo", "cabra", "canario", "cerdo", "cordero", "cuervo", "delfin", "elefante", "foca", "gabiota", "gallina", "gallo", "gato", "leon", "lobo", "mono", "mosca", "murcielago", "oso", "paloma", "pato", "perro", "tigre", "rana", "toro", "tortuga", "vaca"};
     Random generador;
     ImageButton uno, dos, tres, cuatro;
     MediaPlayer mp;
@@ -83,7 +83,7 @@ public class Juego extends AppCompatActivity {
         String an;
         animalesSelect = new ArrayList<>();
         while (animalesSelect.size() != 4) {
-            if (!animalesSelect.contains(an = animales[generador.nextInt(animales.length - 1)])) {
+            if (!animalesSelect.contains(an = animales[generador.nextInt(animales.length)])) {
                 animalesSelect.add(an);
             }
         }
