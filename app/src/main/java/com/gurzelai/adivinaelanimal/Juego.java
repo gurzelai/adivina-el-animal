@@ -67,6 +67,7 @@ public class Juego extends AppCompatActivity {
             bundle.putString("a", "b");
             analytics.logEvent("c", bundle);
             Intent intent = new Intent(getApplicationContext(), Acierto.class);
+            intent.putExtra("nombre del animal", s);
             startActivityForResult(intent, 1);
         }
     }

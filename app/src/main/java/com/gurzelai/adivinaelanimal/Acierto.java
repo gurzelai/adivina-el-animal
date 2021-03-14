@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Random;
 
@@ -21,6 +22,9 @@ public class Acierto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acierto);
 
+        String nombreDelAnimal = getIntent().getStringExtra("nombre del animal");
+        TextView respuesta = findViewById(R.id.tvRespuesta);
+        respuesta.setText(respuesta.getText().toString()+(nombreDelAnimal.toUpperCase()));
         gifImageView = findViewById(R.id.gif);
         atras = findViewById(R.id.atras);
         atras.setOnClickListener(view -> cerrar());

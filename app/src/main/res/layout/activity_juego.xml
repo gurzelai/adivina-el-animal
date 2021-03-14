@@ -91,4 +91,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:elevation="16dp"
+        android:fontFamily="@font/freckle_face"
+        android:text="REPLAY"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/boton"
+        app:layout_constraintEnd_toEndOf="@+id/boton"
+        app:layout_constraintStart_toStartOf="@+id/boton"
+        app:layout_constraintTop_toTopOf="@+id/boton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
