@@ -28,22 +28,33 @@
 
     <Button
         android:id="@+id/jugar"
-        android:layout_width="267dp"
-        android:layout_height="71dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="270dp"
+        android:layout_height="70dp"
         android:backgroundTint="@color/teal_700"
         android:text="JUGAR"
+        android:layout_marginBottom="10sp"
         app:layout_constraintBottom_toTopOf="@+id/instrucciones"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
+        android:layout_marginBottom="10sp"
         android:id="@+id/instrucciones"
-        android:layout_width="267dp"
-        android:layout_height="71dp"
-        android:layout_marginBottom="70dp"
+        android:layout_width="270dp"
+        android:layout_height="70dp"
         android:backgroundTint="@color/teal_700"
         android:text="INSTRUCCIONES"
+        app:layout_constraintBottom_toTopOf="@+id/ajustes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/ajustes"
+        android:layout_width="270dp"
+        android:layout_height="70dp"
+        android:backgroundTint="@color/teal_700"
+        android:text="AJUSTES"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

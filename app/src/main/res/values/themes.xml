@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.AdivinaElAnimal" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:textAllCaps">false</item>
     </style>
     <style name="Theme.AdivinaElAnimal.Launcher">
         <item name="android:windowBackground">@drawable/splash</item>
