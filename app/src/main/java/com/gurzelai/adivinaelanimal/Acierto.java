@@ -16,13 +16,17 @@ public class Acierto extends AppCompatActivity {
     GifImageView gifImageView;
     MediaPlayer mp;
     Button atras;
+    TextView puntos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acierto);
 
+        int puntosActuales = getIntent().getIntExtra("puntos",0);
         String nombreDelAnimal = getIntent().getStringExtra("nombre del animal");
+        puntos = findViewById(R.id.puntos);
+        puntos.setText(puntos.getText().toString()+puntosActuales);
         TextView respuesta = findViewById(R.id.tvRespuesta);
         respuesta.setText(respuesta.getText().toString()+(nombreDelAnimal.toUpperCase()));
         gifImageView = findViewById(R.id.gif);

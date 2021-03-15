@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -28,6 +29,7 @@ public class Juego extends AppCompatActivity {
     String correcto;
     List<String> animalesSelect;
     FloatingActionButton boton;
+    int puntos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +37,13 @@ public class Juego extends AppCompatActivity {
         setContentView(R.layout.activity_juego);
 
         getSupportActionBar().setTitle("Adivina el animal");
-
+        if (getIntent().getExtras()!=null) {
+            puntos = getIntent().getExtras().getInt("puntos", 0);
+        } else {
+            puntos = 0;
+        }
         uno = findViewById(R.id.imagen1);
-        dos =  findViewById(R.id.imagen2);
+        dos = findViewById(R.id.imagen2);
         tres = findViewById(R.id.imagen3);
         cuatro = findViewById(R.id.imagen4);
         boton = findViewById(R.id.boton);
@@ -68,7 +74,8 @@ public class Juego extends AppCompatActivity {
             analytics.logEvent("c", bundle);
             Intent intent = new Intent(getApplicationContext(), Acierto.class);
             intent.putExtra("nombre del animal", s);
-            startActivityForResult(intent, 1);
+            intent.putExtra("puntos", ++puntos);
+            startActivityForResult(intent, 0);
         }
     }
 
@@ -89,11 +96,16 @@ public class Juego extends AppCompatActivity {
             }
         }
 
-        uno.setImageResource(getResources().getIdentifier(animalesSelect.get(0), "drawable", getPackageName()));
-        dos.setImageResource(getResources().getIdentifier(animalesSelect.get(1), "drawable", getPackageName()));
-        tres.setImageResource(getResources().getIdentifier(animalesSelect.get(2), "drawable", getPackageName()));
-        cuatro.setImageResource(getResources().getIdentifier(animalesSelect.get(3), "drawable", getPackageName()));
-        sonido(correcto = animalesSelect.get(generador.nextInt(4 - 1))); //aqui ponemos sonido y guardamos cuál es el correecto
+        try {
+            uno.setImageResource(getResources().getIdentifier(animalesSelect.get(0), "drawable", getPackageName()));
+            dos.setImageResource(getResources().getIdentifier(animalesSelect.get(1), "drawable", getPackageName()));
+            tres.setImageResource(getResources().getIdentifier(animalesSelect.get(2), "drawable", getPackageName()));
+            cuatro.setImageResource(getResources().getIdentifier(animalesSelect.get(3), "drawable", getPackageName()));
+            sonido(correcto = animalesSelect.get(generador.nextInt(4 - 1))); //aqui ponemos sonido y guardamos cuál es el correecto
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), correcto, Toast.LENGTH_LONG).show();
+        }
     }
 
     private void sonido(String s) {
@@ -105,7 +117,9 @@ public class Juego extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Intent intent = new Intent(getApplicationContext(), Juego.class);
+        intent.putExtra("puntos", puntos);
         startActivity(intent);
         finish();
     }
+
 }
