@@ -1,7 +1,10 @@
 package com.gurzelai.adivinaelanimal;
 
+import android.app.Application;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.SystemClock;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,5 +15,7 @@ public class SplashActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish(); // evitar regresar a éste activity
+
     }
 }
+
