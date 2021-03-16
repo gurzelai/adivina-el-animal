@@ -1,16 +1,14 @@
 package com.gurzelai.adivinaelanimal;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.icu.util.BuddhistCalendar;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,11 +23,13 @@ public class Juego extends AppCompatActivity {
     String[] animales = {"burro", "caballo", "cabra", "canario", "cerdo", "cordero", "cuervo", "delfin", "elefante", "foca", "gabiota", "gallina", "gallo", "gato", "leon", "lobo", "mono", "mosca", "murcielago", "oso", "paloma", "pato", "perro", "tigre", "rana", "toro", "tortuga", "vaca"};
     Random generador;
     ImageButton uno, dos, tres, cuatro;
+    ImageView corazon2, corazon3;
     MediaPlayer mp;
     String correcto;
     List<String> animalesSelect;
     FloatingActionButton boton;
     int puntos;
+    int vidas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +37,14 @@ public class Juego extends AppCompatActivity {
         setContentView(R.layout.activity_juego);
 
         getSupportActionBar().setTitle("Adivina el animal");
-        if (getIntent().getExtras()!=null) {
+        if (getIntent().getExtras() != null) {
             puntos = getIntent().getExtras().getInt("puntos", 0);
+            vidas = getIntent().getExtras().getInt("vidas", 3);
         } else {
             puntos = 0;
+            vidas = 3;
         }
+        actualizarVidas();
         uno = findViewById(R.id.imagen1);
         dos = findViewById(R.id.imagen2);
         tres = findViewById(R.id.imagen3);
@@ -50,6 +53,20 @@ public class Juego extends AppCompatActivity {
         boton.setOnClickListener(view -> volverAReproducir());
         inicializar();
         onlisten();
+    }
+
+    private void actualizarVidas() {
+        if (vidas < 3) {
+            corazon3 = findViewById(R.id.corazon3);
+            corazon3.setVisibility(View.INVISIBLE);
+        }
+        if (vidas < 2) {
+            corazon2 = findViewById(R.id.corazon2);
+            corazon2.setVisibility(View.INVISIBLE);
+        }
+        if(vidas==0){
+            finish();
+        }
     }
 
     private void volverAReproducir() {
@@ -76,6 +93,10 @@ public class Juego extends AppCompatActivity {
             intent.putExtra("nombre del animal", s);
             intent.putExtra("puntos", ++puntos);
             startActivityForResult(intent, 0);
+        }
+        else{
+            vidas--;
+            actualizarVidas();
         }
     }
 
@@ -118,6 +139,7 @@ public class Juego extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Intent intent = new Intent(getApplicationContext(), Juego.class);
         intent.putExtra("puntos", puntos);
+        intent.putExtra("puntos", vidas);
         startActivity(intent);
         finish();
     }

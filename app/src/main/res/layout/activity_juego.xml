@@ -11,6 +11,35 @@
     android:paddingBottom="10sp"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:id="@+id/vidas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/titulo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10sp"
+        android:background="@color/black"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/corazon1"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:src="@drawable/corazon"/>
+        <ImageView
+            android:id="@+id/corazon2"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_marginHorizontal="10sp"
+            android:src="@drawable/corazon"/>
+        <ImageView
+            android:id="@+id/corazon3"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:src="@drawable/corazon"/>
+    </LinearLayout>
+
     <TextView
         android:id="@+id/titulo"
         android:layout_width="wrap_content"
@@ -22,7 +51,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/vidas"/>
 
     <ImageButton
         android:id="@+id/imagen1"
