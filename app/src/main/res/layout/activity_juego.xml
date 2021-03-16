@@ -35,7 +35,8 @@
             android:id="@+id/corazon2"
             android:layout_width="100px"
             android:layout_height="100px"
-            android:src="@drawable/corazon" />
+            android:src="@drawable/corazon"
+            android:layout_marginHorizontal="3sp"/>
 
         <ImageView
             android:id="@+id/corazon3"
@@ -49,7 +50,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -58,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="45dp"
+            android:textColor="@color/black"
             android:layout_marginRight="5sp"
             android:textStyle="bold|italic"/>
         <ImageView
