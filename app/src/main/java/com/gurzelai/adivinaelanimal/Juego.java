@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,10 +117,6 @@ public class Juego extends AppCompatActivity {
     private void comprobar(String s) {
         if (s.equals(correcto)) {
             mp.stop();
-            FirebaseAnalytics analytics = FirebaseAnalytics.getInstance(this);
-            Bundle bundle = new Bundle();
-            bundle.putString("a", "b");
-            analytics.logEvent("c", bundle);
             Intent intent = new Intent(getApplicationContext(), Acierto.class);
             intent.putExtra("nombre del animal", s);
             intent.putExtra("puntos", ++puntos);
