@@ -3,6 +3,7 @@ package com.gurzelai.adivinaelanimal;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -98,6 +99,7 @@ public class Juego extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
             if(mp.isPlaying()) mp.stop();
+            dialog.setCancelable(false);
         }
     }
 
