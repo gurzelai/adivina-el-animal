@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdivinaElAnimal">
-        <activity android:name=".Configuracion"></activity>
+        <activity android:name=".Configuracion" />
         <activity android:name=".Acierto" />
         <activity android:name=".Instrucciones" />
         <activity android:name=".MainActivity" />
