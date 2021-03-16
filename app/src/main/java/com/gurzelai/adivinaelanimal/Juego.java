@@ -27,7 +27,7 @@ public class Juego extends AppCompatActivity {
     String[] animales = {"burro", "caballo", "cabra", "canario", "cerdo", "cordero", "cuervo", "delfin", "elefante", "foca", "gabiota", "gallina", "gallo", "gato", "leon", "lobo", "mono", "mosca", "murcielago", "oso", "paloma", "pato", "perro", "tigre", "rana", "toro", "vaca"};
     Random generador;
     ImageButton uno, dos, tres, cuatro;
-    ImageView corazon2, corazon3;
+    ImageView corazon1, corazon2, corazon3;
     MediaPlayer mp;
     String correcto;
     List<String> animalesSelect;
@@ -45,7 +45,7 @@ public class Juego extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             puntos = getIntent().getExtras().getInt("puntos", 0);
             vidas = getIntent().getExtras().getInt("vidas", 3);
-            if(puntos%5==0 && vidas < 3) {
+            if (puntos % 5 == 0 && vidas < 3) {
                 vidas++;
             }
         } else {
@@ -84,11 +84,13 @@ public class Juego extends AppCompatActivity {
             corazon2 = findViewById(R.id.corazon2);
             corazon2.setVisibility(View.INVISIBLE);
         }
-        if(vidas==0){
+        if (vidas == 0) {
+            corazon1 = findViewById(R.id.corazon1);
+            corazon1.setVisibility(View.INVISIBLE);
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("GAME OVER");
-            builder.setMessage("Has perdido con "+puntos+" puntos");
-            builder.setPositiveButton("Superar record", new DialogInterface.OnClickListener() {
+            builder.setMessage("Has perdido con " + puntos + " puntos");
+            builder.setPositiveButton("Volver a jugar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(getApplicationContext(), Juego.class);
@@ -98,15 +100,14 @@ public class Juego extends AppCompatActivity {
             });
             AlertDialog dialog = builder.create();
             dialog.show();
-            if(mp.isPlaying()) mp.stop();
+            if (mp.isPlaying()) mp.stop();
             dialog.setCancelable(false);
         }
     }
 
     private void volverAReproducir() {
-        if (!mp.isPlaying()) {
-            mp.start();
-        }
+        mp.start();
+
     }
 
     private void onlisten() {
@@ -123,8 +124,7 @@ public class Juego extends AppCompatActivity {
             intent.putExtra("nombre del animal", s);
             intent.putExtra("puntos", ++puntos);
             startActivityForResult(intent, 0);
-        }
-        else{
+        } else {
             vidas--;
             actualizarVidas();
         }
@@ -152,9 +152,10 @@ public class Juego extends AppCompatActivity {
             dos.setImageResource(getResources().getIdentifier(animalesSelect.get(1), "drawable", getPackageName()));
             tres.setImageResource(getResources().getIdentifier(animalesSelect.get(2), "drawable", getPackageName()));
             cuatro.setImageResource(getResources().getIdentifier(animalesSelect.get(3), "drawable", getPackageName()));
-            sonido(correcto = animalesSelect.get(generador.nextInt(4 - 1))); //aqui ponemos sonido y guardamos cuál es el correecto
+            sonido(correcto = animalesSelect.get(generador.nextInt(4 - 1)));
         } catch (Exception e) {
             e.printStackTrace();
+            //Este try catch lo usaremos para ver si algun audio o imagen falla
             Toast.makeText(getApplicationContext(), correcto, Toast.LENGTH_LONG).show();
         }
     }
@@ -173,5 +174,4 @@ public class Juego extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
 }
