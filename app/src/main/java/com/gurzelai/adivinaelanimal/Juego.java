@@ -1,14 +1,18 @@
 package com.gurzelai.adivinaelanimal;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,7 +24,7 @@ import java.util.Random;
 
 public class Juego extends AppCompatActivity {
 
-    String[] animales = {"burro", "caballo", "cabra", "canario", "cerdo", "cordero", "cuervo", "delfin", "elefante", "foca", "gabiota", "gallina", "gallo", "gato", "leon", "lobo", "mono", "mosca", "murcielago", "oso", "paloma", "pato", "perro", "tigre", "rana", "toro", "tortuga", "vaca"};
+    String[] animales = {"burro", "caballo", "cabra", "canario", "cerdo", "cordero", "cuervo", "delfin", "elefante", "foca", "gabiota", "gallina", "gallo", "gato", "leon", "lobo", "mono", "mosca", "murcielago", "oso", "paloma", "pato", "perro", "tigre", "rana", "toro", "vaca"};
     Random generador;
     ImageButton uno, dos, tres, cuatro;
     ImageView corazon2, corazon3;
@@ -28,6 +32,7 @@ public class Juego extends AppCompatActivity {
     String correcto;
     List<String> animalesSelect;
     FloatingActionButton boton;
+    TextView tvpuntos;
     int puntos;
     int vidas;
 
@@ -40,11 +45,16 @@ public class Juego extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             puntos = getIntent().getExtras().getInt("puntos", 0);
             vidas = getIntent().getExtras().getInt("vidas", 3);
+            if(puntos%5==0 && vidas < 3) {
+                vidas++;
+            }
         } else {
             puntos = 0;
             vidas = 3;
         }
         actualizarVidas();
+        tvpuntos = findViewById(R.id.tvpuntos);
+        tvpuntos.setText(String.valueOf(puntos));
         uno = findViewById(R.id.imagen1);
         dos = findViewById(R.id.imagen2);
         tres = findViewById(R.id.imagen3);
@@ -53,6 +63,16 @@ public class Juego extends AppCompatActivity {
         boton.setOnClickListener(view -> volverAReproducir());
         inicializar();
         onlisten();
+    }
+
+    private void sumarVida() {
+        LinearLayout layoutVidas = findViewById(R.id.layoutVidas);
+        ImageView iv;
+        layoutVidas.addView(iv = new ImageView(getApplicationContext()));
+        iv.setImageResource(R.drawable.corazon);
+        iv.setMaxHeight(100);
+        iv.setMaxWidth(100);
+        iv.setAdjustViewBounds(true);
     }
 
     private void actualizarVidas() {
@@ -65,7 +85,20 @@ public class Juego extends AppCompatActivity {
             corazon2.setVisibility(View.INVISIBLE);
         }
         if(vidas==0){
-            finish();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("GAME OVER");
+            builder.setMessage("Has perdido con "+puntos+" puntos");
+            builder.setPositiveButton("Superar record", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(getApplicationContext(), Juego.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            if(mp.isPlaying()) mp.stop();
         }
     }
 
@@ -139,7 +172,7 @@ public class Juego extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Intent intent = new Intent(getApplicationContext(), Juego.class);
         intent.putExtra("puntos", puntos);
-        intent.putExtra("puntos", vidas);
+        intent.putExtra("vidas", vidas);
         startActivity(intent);
         finish();
     }

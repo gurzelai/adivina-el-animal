@@ -12,32 +12,59 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/vidas"
-        android:layout_width="wrap_content"
+        android:id="@+id/layoutVidas"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="90sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20sp"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/titulo"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10sp"
-        android:background="@color/black"
-        android:orientation="horizontal">
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
             android:id="@+id/corazon1"
-        android:layout_width="20sp"
-        android:layout_height="20sp"
-        android:src="@drawable/corazon"/>
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:src="@drawable/corazon" />
+
         <ImageView
             android:id="@+id/corazon2"
-            android:layout_width="20sp"
-            android:layout_height="20sp"
-            android:layout_marginHorizontal="10sp"
-            android:src="@drawable/corazon"/>
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:src="@drawable/corazon" />
+
         <ImageView
             android:id="@+id/corazon3"
-            android:layout_width="20sp"
-            android:layout_height="20sp"
-            android:src="@drawable/corazon"/>
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:src="@drawable/corazon" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvpuntos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="45dp"
+            android:layout_marginRight="5sp"
+            android:textStyle="bold|italic"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/estrella"/>
     </LinearLayout>
 
     <TextView
@@ -51,68 +78,60 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vidas"/>
+        app:layout_constraintTop_toBottomOf="@+id/layoutVidas" />
 
-    <ImageButton
-        android:id="@+id/imagen1"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/imagen2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo"
-        tools:srcCompat="@tools:sample/avatars"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"/>
-
-    <ImageButton
-        android:id="@+id/imagen3"
-        android:layout_width="150dp"
+    <TableLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/boton"
-        app:layout_constraintEnd_toStartOf="@+id/imagen4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagen1"
-        tools:srcCompat="@tools:sample/avatars"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"/>
-
-    <ImageButton
-        android:id="@+id/imagen2"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo"
-        tools:srcCompat="@tools:sample/avatars"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"/>
-
-    <ImageButton
-        android:id="@+id/imagen4"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/boton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagen2"
-        tools:srcCompat="@tools:sample/avatars"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo">
+
+        <TableRow>
+
+            <ImageButton
+                android:id="@+id/imagen1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageButton
+                android:id="@+id/imagen3"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                tools:srcCompat="@tools:sample/avatars" />
+        </TableRow>
+
+        <TableRow>
+
+            <ImageButton
+                android:id="@+id/imagen2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageButton
+                android:id="@+id/imagen4"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                tools:srcCompat="@tools:sample/avatars" />
+        </TableRow>
+    </TableLayout>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/boton"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
         android:layout_marginBottom="25dp"
         android:clickable="true"
         app:backgroundTint="@android:color/holo_green_light"
@@ -135,5 +154,8 @@
         app:layout_constraintEnd_toEndOf="@+id/boton"
         app:layout_constraintStart_toStartOf="@+id/boton"
         app:layout_constraintTop_toTopOf="@+id/boton" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

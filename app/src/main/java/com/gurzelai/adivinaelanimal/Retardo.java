@@ -10,6 +10,6 @@ public class Retardo extends Application {
         super.onCreate();
         MediaPlayer mp = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("sonidointro", "raw", getPackageName()));
         mp.start();
-        SystemClock.sleep(2200);
+        SystemClock.sleep(2500);
     }
 }
