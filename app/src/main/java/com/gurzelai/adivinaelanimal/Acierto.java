@@ -2,8 +2,11 @@ package com.gurzelai.adivinaelanimal;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Button;
@@ -20,6 +23,7 @@ public class Acierto extends AppCompatActivity {
     Button atras;
     TextView puntos;
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +34,8 @@ public class Acierto extends AppCompatActivity {
         puntos = findViewById(R.id.puntos);
         puntos.setText(puntos.getText().toString() + puntosActuales);
         TextView respuesta = findViewById(R.id.tvRespuesta);
-        respuesta.setText(respuesta.getText().toString() + (nombreDelAnimal.toUpperCase()));
+        String respuestaCorrecta = respuesta.getText().toString() + "<b>"+ nombreDelAnimal.toUpperCase() +"</b>";
+        respuesta.setText(HtmlCompat.fromHtml(respuestaCorrecta, Typeface.BOLD));
         gifImageView = findViewById(R.id.gif);
         atras = findViewById(R.id.atras);
         atras.setOnClickListener(view -> cerrar());
