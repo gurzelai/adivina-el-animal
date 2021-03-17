@@ -132,10 +132,16 @@ public class Juego extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
+    protected void onPause() {
         mp.stop();
         mp.release();
-        super.onStop();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        sonido(correcto);
+        super.onResume();
     }
 
     private void inicializar() {
