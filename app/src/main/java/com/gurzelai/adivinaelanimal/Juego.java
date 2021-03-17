@@ -45,7 +45,7 @@ public class Juego extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             puntos = getIntent().getExtras().getInt("puntos", 0);
             vidas = getIntent().getExtras().getInt("vidas", 3);
-            if (puntos % 5 == 0 && vidas < 3) {
+            if (puntos % 10 == 0 && vidas < 3) {
                 vidas++;
             }
         } else {
@@ -123,6 +123,7 @@ public class Juego extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), Acierto.class);
             intent.putExtra("nombre del animal", s);
             intent.putExtra("puntos", ++puntos);
+            intent.putExtra("vidas", vidas);
             startActivityForResult(intent, 0);
         } else {
             vidas--;
