@@ -131,19 +131,6 @@ public class Juego extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onPause() {
-        mp.stop();
-        mp.release();
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        sonido(correcto);
-        super.onResume();
-    }
-
     private void inicializar() {
         generador = new Random();
         String an;
@@ -170,6 +157,20 @@ public class Juego extends AppCompatActivity {
     private void sonido(String s) {
         mp = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier(s, "raw", getPackageName()));
         mp.start();
+    }
+
+
+    @Override
+    protected void onPause() {
+        mp.stop();
+        mp.release();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        sonido(correcto);
+        super.onResume();
     }
 
     @Override

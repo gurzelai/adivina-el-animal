@@ -57,7 +57,7 @@ public class Acierto extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("¡UNA VIDA MÁS!");
         builder.setIcon(R.drawable.corazon);
-        builder.setMessage("Acabas de consegir " + puntos + " puntos.\nTendrás una vida más cada 10 puntos");
+        builder.setMessage("Acabas de consegir " + puntos + " puntos.\nTendrás una vida más cada 10 puntos.");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
